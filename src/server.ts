@@ -16,11 +16,38 @@ io.on('connection', (socket) => {
 
   socket.emit('message', 'Welcome to Socket.IO server!');
 
-  socket.on('send_message', (msg) => {
-    console.log('Received:', msg);
-
-    socket.broadcast.emit('new_message', msg);
+  //==== Join Socket Room Event ====
+  socket.on('joinRoom', ({ patient_id }: { patient_id: string }) => {
+    const room = `patient_${patient_id}`;
+    socket.join(room);
+    console.log(`${socket.id} joined room: ${room}`);
   });
+
+  //==== Typing Start Event ====
+  socket.on(
+    'typing:start',
+    ({
+      patient_id,
+      field,
+      value,
+    }: {
+      patient_id: string;
+      field: string;
+      value: string;
+    }) => {
+      const room = `patient_${patient_id}`;
+      socket.to(room).emit('typing', { field, value, is_typing: true });
+    }
+  );
+
+  //==== Typing Stop Event ====
+  socket.on(
+    'typing:stop',
+    ({ patient_id, field }: { patient_id: string; field: string }) => {
+      const room = `patient_${patient_id}`;
+      socket.to(room).emit('typing:update', { field, is_typing: false });
+    }
+  );
 
   socket.on('disconnect', () => {
     console.log('Client disconnected:', socket.id);
