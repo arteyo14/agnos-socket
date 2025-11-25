@@ -31,6 +31,7 @@ npx tsc --init
 
 Then replace with:
 
+```
 {
 "compilerOptions": {
 "target": "ES2020",
@@ -41,6 +42,7 @@ Then replace with:
 "strict": true
 }
 }
+```
 
 ⚙️ Scripts
 
