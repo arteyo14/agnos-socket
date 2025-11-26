@@ -15,14 +15,14 @@ io.on('connection', (socket) => {
 
   socket.emit('message', 'Welcome to Socket.IO server!');
 
-  //==== Join Socket Room Event ====
+  /* ==== Join Socket Room Event ==== */
   socket.on('joinRoom', ({ patient_id }: { patient_id: string }) => {
     const room = `patient_${patient_id}`;
     socket.join(room);
     console.log(`${socket.id} joined room: ${room}`);
   });
 
-  //==== Typing Start Event ====
+  /* ==== Typing Start Event ==== */
   socket.on(
     'typing:start',
     ({
@@ -39,7 +39,7 @@ io.on('connection', (socket) => {
     }
   );
 
-  //==== Typing Stop Event ====
+  /* ==== Typing Stop Event ==== */
   socket.on(
     'typing:stop',
     ({ patient_id, field }: { patient_id: string; field: string }) => {
