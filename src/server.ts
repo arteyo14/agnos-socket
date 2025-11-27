@@ -7,7 +7,7 @@ const server = http.createServer(app);
 
 const allowedOrigins =
   process.env.NODE_ENV === 'production'
-    ? ['']
+    ? ['https://agnos-test-pi.vercel.app']
     : ['http://localhost:3000'];
 
 const io = new Server(server, {
