@@ -5,9 +5,14 @@ import { Server } from 'socket.io';
 const app = express();
 const server = http.createServer(app);
 
+const allowedOrigins =
+  process.env.NODE_ENV === 'production'
+    ? ['']
+    : ['http://localhost:3000'];
+
 const io = new Server(server, {
   cors: {
-    origin: '*',
+    origin: allowedOrigins,
     methods: ['GET', 'POST'],
   },
 });
