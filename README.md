@@ -2,16 +2,17 @@
 
 Express + Socket.IO (TypeScript) Server
 
-This project sets up a real-time Socket.IO server using Express and TypeScript, suitable for local development, testing, or small-scale demos such as chat applications, dashboards, or real-time monitoring.
+This project provides a **real-time communication backend** built with Express and Socket.IO, designed to synchronize data between patients and staff in real-time.
 
 ⸻
 
 🚀 Features
-• Built with TypeScript for type safety.
-• Real-time communication with Socket.IO.
-• Lightweight setup using Express.js.
-• Ready for deployment on Railway, Render, or any Node hosting platform.
-• CORS enabled for cross-origin connections (works with any frontend framework such as Next.js or React).
+- 🧩 Built with **TypeScript** for type safety  
+- ⚡ Real-time synchronization via **Socket.IO**  
+- 🧠 Structured event handling (joinRoom, typing:start, typing:stop)  
+- 🌐 **CORS ready** for external frontend connection (Next.js, React, etc.)  
+- ☁️ Easy to deploy on **Railway**, **Render**, or other Node.js hosts  
+- 🔁 Works with multiple clients (1-to-1 or 1-to-many rooms)
 
 ⸻
 
@@ -33,14 +34,15 @@ Then replace with:
 
 ```
 {
-"compilerOptions": {
-"target": "ES2020",
-"module": "CommonJS",
-"outDir": "dist",
-"rootDir": "src",
-"esModuleInterop": true,
-"strict": true
-}
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "outDir": "dist",
+    "rootDir": "src",
+    "esModuleInterop": true,
+    "strict": true
+  },
+  "include": ["src"]
 }
 ```
 
@@ -48,9 +50,14 @@ Then replace with:
 
 Add this to your package.json:
 
+```
 "scripts": {
-"dev": "nodemon --exec ts-node src/server.ts"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --exec ts-node src/server.ts",
+    "build": "tsc",
+    "start": "node build/server.js"
 }
+```
 
 Run the server in development mode:
 
