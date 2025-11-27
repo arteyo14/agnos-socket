@@ -16,6 +16,15 @@ This project provides a **real-time communication backend** built with Express a
 
 ⸻
 
+## 🚀 Live Demo
+
+| Service                                 | URL                                            |
+| --------------------------------------- | ---------------------------------------------- |
+| **Frontend (Next.js)**                  | https://agnos-test-pi.vercel.app/             |
+| **Socket Server (Express + Socket.IO)** | https://agnos-socket-production.up.railway.app |
+
+---
+
 📦 Installation 1. Clone or initialize the project:
 
 mkdir socket-server && cd socket-server
