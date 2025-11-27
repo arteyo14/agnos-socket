@@ -4,14 +4,16 @@ import { Server } from 'socket.io';
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server({
+
+const io = new Server(server, {
   cors: {
     origin: '*',
+    methods: ['GET', 'POST'],
   },
 });
 
 io.on('connection', (socket) => {
-  console.log('Client connected:', socket.id);
+  console.log('✅ Client connected:', socket.id);
 
   socket.emit('message', 'Welcome to Socket.IO server!');
 
@@ -36,6 +38,9 @@ io.on('connection', (socket) => {
     }) => {
       const room = `patient_${patient_id}`;
       socket.to(room).emit('typing', { field, value, is_typing: true });
+      console.log(
+        `User typing in room ${room}: field=${field}, value=${value}`
+      );
     }
   );
 
@@ -48,8 +53,24 @@ io.on('connection', (socket) => {
     }
   );
 
+  /* ==== Submit Form Event ==== */
+  socket.on(
+    'form:submit',
+    ({
+      patient_id,
+      form_data,
+    }: {
+      patient_id: string;
+      form_data: Record<string, any>;
+    }) => {
+      const room = `patient_${patient_id}`;
+      socket.to(room).emit('form:submitted');
+      console.log(`Form submitted in room ${room}:`, form_data);
+    }
+  );
+
   socket.on('disconnect', () => {
-    console.log('Client disconnected:', socket.id);
+    console.log('❌ Client disconnected:', socket.id);
   });
 });
 
