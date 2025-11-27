@@ -23,7 +23,18 @@ This project provides a **real-time communication backend** built with Express a
 | **Frontend (Next.js)**                  | https://agnos-test-pi.vercel.app/             |
 | **Socket Server (Express + Socket.IO)** | https://agnos-socket-production.up.railway.app |
 
----
+
+### 🔐 Demo Accounts
+
+| Role | Username | Password |
+|------|-----------|-----------|
+| 🩺 **Staff (Viewer)** | staff1 | P@ssw0rd! |
+| 👤 **Patient (Form User)** | patient1 | P@ssw0rd! |
+
+> **Note:**  
+> The authentication shown here is for **demonstration purposes only**.  
+> These accounts and credentials are **mock users** created solely to illustrate the **real-time synchronization flow** between patient and staff dashboards.  
+> No actual authentication, data protection, or secure storage mechanisms have been implemented in this prototype version.
 
 📦 Installation 1. Clone or initialize the project:
 
